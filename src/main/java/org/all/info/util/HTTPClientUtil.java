@@ -1,4 +1,4 @@
-package org.all.info.test;
+package org.all.info.util;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -15,28 +15,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by Мартюк on 03.03.2015.
+ * Created by yuriygorbylov on 15.03.15.
  */
-public class TestHttpClient {
+public class HTTPClientUtil {
 
-    private static Logger LOG = LogManager.getLogger(TestHttpClient.class);
+    private static Logger log = LogManager.getLogger(HTTPClientUtil.class);
 
     private static JSONParser parser = new JSONParser();
 
-    public static void main(String[] args) throws IOException {
-
-        String URL = "http://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v1/?language=en_us&key=A4876DA2088DCB48058C61EC6200F143&format=json";
-        getPageContent(URL);
-
-    }
 
     public static JSONObject getPageContent(String url) {
-        try {
 
+        try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpGet getRequest = new HttpGet(url);
             getRequest.addHeader("accept", "application/json");
-
             HttpResponse response = httpClient.execute(getRequest);
 
             if (response.getStatusLine().getStatusCode() != 200) {
@@ -45,28 +38,15 @@ public class TestHttpClient {
             }
 
             BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
-
             JSONObject jsonObject = (JSONObject) parser.parse(br);
-
-//            StringBuilder stringBuilder = new StringBuilder();
-//            String output;
-//            LOG.info("Output from Server .... \n");
-//            while ((output = br.readLine()) != null) {
-//                stringBuilder.append(br.readLine());
-//            }
-//            LOG.info(stringBuilder);
 
             httpClient.getConnectionManager().shutdown();
 
-//            return stringBuilder.toString();
             return jsonObject;
 
         } catch (ClientProtocolException e) {
-
             e.printStackTrace();
-
         } catch (IOException e) {
-
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
@@ -74,5 +54,4 @@ public class TestHttpClient {
 
         return null;
     }
-
 }
