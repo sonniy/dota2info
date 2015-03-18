@@ -2,25 +2,34 @@ package org.all.info.util;
 
 import com.mysql.jdbc.Driver;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 
 public class ConnectionFactory {
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/dota2info";
-    private final static String USER = "root";
-    private final static String PASS = "";
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
-
-        Class.forName(JDBC_DRIVER);
-        Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-
+        Connection connection = null;
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(new File("src\\main\\resources\\jdbc.properties")));
+            String JDBCDriver = (String) properties.get("db.driver");
+            String url = (String) properties.get("db.url");
+            String user = (String) properties.get("db.user");
+            String pass = (String) properties.get("db.passr");
+            Class.forName(JDBCDriver);
+            connection = DriverManager.getConnection(url, user, pass);
+            return connection;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return connection;
-
     }
 
 }

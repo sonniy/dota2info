@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- JDBC data source -->
+    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="${db.driver}"/>
+        <beans:property name="url" value="${db.url}"/>
+        <beans:property name="username" value="${db.user}"/>
+        <beans:property name="password" value="${db.pass}"/>
+    </beans:bean>
+
+    <!-- SessionFactory -->
+    <beans:bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <beans:property name="dataSource" ref="dataSource"/>
+        <beans:property name="annotatedClasses">
+            <beans:list>
+                <beans:value>org.all.info.model.MatchID</beans:value>
+                <beans:value>org.all.info.model.Match</beans:value>
+                <beans:value>org.all.info.model.LobbyType</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="hibernateProperties">
+            <beans:props>
+                <beans:prop key="dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
+                <beans:prop key="hbm2ddl.auto">update</beans:prop>
+                <beans:prop key="current_session_context_class">thread</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+
+    <!-- Transactions -->
+    <context:component-scan base-package="org.all.info.service"/>
+
+    <tx:annotation-driven transaction-manager="transactionalMeneger"/>
+
+    <beans:bean id="transactionalMeneger" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <beans:property name="sessionFactory" ref="sessionFactory"/>
+    </beans:bean>
+
+    <!-- Beans -->
+    <beans:bean id="matchDAO" class="org.all.info.dao.match.MatchDAOImpl"/>
+
+    <beans:bean id="matchService" class="org.all.info.service.match.MatchServiceImpl"/>
+
+    <beans:bean id="matchIDDAO" class="org.all.info.dao.matchID.MatchIDDAOImpl"/>
+
+    <beans:bean id="matchIDService" class="org.all.info.service.matchID.MatchIDServiceImpl"/>
+
+</beans:beans>
