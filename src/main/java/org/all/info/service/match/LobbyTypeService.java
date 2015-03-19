@@ -8,5 +8,5 @@ public interface LobbyTypeService {
 
     public LobbyType read(String name);
 
-    public LobbyType read(Long id);
+    public LobbyType read(Integer id);
 }

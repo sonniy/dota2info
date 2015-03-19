@@ -27,7 +27,7 @@ public class LobbyTypeParser {
 
     private static Logger log = LogManager.getLogger(LobbyTypeParser.class);
 
-    private final String JSON_PATH = "E:\\workspace\\dota2info\\src\\main\\resources\\data\\lobbyTypes.json";
+    private final String JSON_PATH = "/home/yuriygorbylov/workspace/dota2all-info/src/main/resources/data/lobbyTypes.json";
 
     private LobbyTypeService lobbyTypeService = (LobbyTypeService) SpringUtil.getApplicationContext().getBean("lobbyTypeService");
 
@@ -44,15 +44,15 @@ public class LobbyTypeParser {
                 Long id = (Long) JSONLobbyType.get("id");
                 String name = (String) JSONLobbyType.get("name");
                 /* Checking for for matches */
-                LobbyType check = lobbyTypeService.read(id);
+                LobbyType check = lobbyTypeService.read(id.intValue());
 
                 if (check == null){
                     /* if rs.next false then matches have not been found, inserting the lobby type name */
                     LobbyType lobbyType = new LobbyType(id.intValue(), name);
                     lobbyTypeService.save(lobbyType);
-                    log.info("Game mode has been saved");
+                    log.info("Lobby type been saved");
                 } else{
-                    log.info("The game type is already exists");
+                    log.info("The lobby type is already exists");
                 }
             }
         } catch (ParseException e) {

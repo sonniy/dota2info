@@ -12,6 +12,6 @@ public interface LobbyTypeDAO {
 
     public LobbyType read(String name);
 
-    public LobbyType read(Long id);
+    public LobbyType read(Integer id);
 
 }

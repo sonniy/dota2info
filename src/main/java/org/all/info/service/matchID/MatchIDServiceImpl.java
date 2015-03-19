@@ -15,7 +15,12 @@ public class MatchIDServiceImpl implements MatchIDService {
 
     @Override
     public void saveMatchID(MatchID matchID) {
-        matchIDDAO.saveMatchID(matchID);
+        matchIDDAO.save(matchID);
+    }
+
+    @Override
+    public MatchID read(Long matchID) {
+        return matchIDDAO.read(matchID);
     }
 
     @Override
@@ -23,6 +28,15 @@ public class MatchIDServiceImpl implements MatchIDService {
         return matchIDDAO.readLastMatchSeqNum();
     }
 
+    @Override
+    public Long readLastMatchID() {
+        return matchIDDAO.readLastMatchID();
+    }
+
+    @Override
+    public void update(MatchID matchID) {
+        matchIDDAO.update(matchID);
+    }
 
     @Override
     public Boolean isMatchExist(Long matchSeqNum) {

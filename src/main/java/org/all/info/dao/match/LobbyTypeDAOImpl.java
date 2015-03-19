@@ -33,7 +33,7 @@ public class LobbyTypeDAOImpl implements LobbyTypeDAO {
     }
 
     @Override
-    public LobbyType read(Long id) {
+    public LobbyType read(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         LobbyType lobbyType = (LobbyType) session.get(LobbyType.class, id);
         return lobbyType;

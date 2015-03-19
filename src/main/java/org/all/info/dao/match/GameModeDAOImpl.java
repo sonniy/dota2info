@@ -32,7 +32,7 @@ public class GameModeDAOImpl implements GameModeDAO {
     }
 
     @Override
-    public GameMode read(Long id) {
+    public GameMode read(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         GameMode gameMode = (GameMode) session.get(GameMode.class, id);
         return  gameMode;

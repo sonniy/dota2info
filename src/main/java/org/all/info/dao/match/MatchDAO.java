@@ -12,6 +12,5 @@ public interface MatchDAO {
 
     public void save(Match match);
 
-    public Long readLastMatchID();
 
 }

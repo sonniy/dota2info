@@ -13,9 +13,13 @@ public class Run {
 
     public static void main(String[] args) {
 
-        new LeagueParser().saveGameMode();
-        new LobbyTypeParser().saveLobbyTypes();
-        new GameModeParser().saveGameMode();
+//        new LeagueParser().saveGameMode();
+//        new LobbyTypeParser().saveLobbyTypes();
+//        new GameModeParser().saveGameMode();
+//
+//        new MatchIDParser().run();
+
+        new MatchParser().run();
 
 
     }

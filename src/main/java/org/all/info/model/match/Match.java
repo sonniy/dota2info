@@ -7,10 +7,9 @@ import javax.persistence.*;
 public class Match {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "match_id")
     private Long match_id;
-    private String season;
+    //private String season;
     private Boolean radiant_win;
     private Long duration;
     private Long start_time;
@@ -37,25 +36,25 @@ public class Match {
     public Match() {
     }
 
-    public Match(Long match_id, String season, Boolean radiant_win, Long duration, Long start_time,
-                 Integer tower_status_radiant, Integer tower_status_dire, Integer barracks_status_radiant,
-                 Integer barracks_status_dire, Integer cluster, Integer first_blood_time, Integer human_players,
-                 Integer positive_votes, Integer negative_votes /*Integer picks_bans*/, LobbyType lobbyType,
+    public Match(Long match_id /*String season*/, Boolean radiant_win, Long duration, Long start_time,
+                 Long tower_status_radiant, Long tower_status_dire, Long barracks_status_radiant,
+                 Long barracks_status_dire, Long cluster, Long first_blood_time, Long human_players,
+                 Long positive_votes, Long negative_votes /*Integer picks_bans*/, LobbyType lobbyType,
                  GameMode gameMode, League league) {
         this.match_id = match_id;
-        this.season = season;
+        //this.season = season;
         this.radiant_win = radiant_win;
         this.duration = duration;
         this.start_time = start_time;
-        this.tower_status_radiant = tower_status_radiant;
-        this.tower_status_dire = tower_status_dire;
-        this.barracks_status_radiant = barracks_status_radiant;
-        this.barracks_status_dire = barracks_status_dire;
-        this.cluster = cluster;
-        this.first_blood_time = first_blood_time;
-        this.human_players = human_players;
-        this.positive_votes = positive_votes;
-        this.negative_votes = negative_votes;
+        this.tower_status_radiant = Integer.valueOf(tower_status_radiant.intValue());
+        this.tower_status_dire = Integer.valueOf(tower_status_dire.intValue());
+        this.barracks_status_radiant = Integer.valueOf(barracks_status_radiant.intValue());
+        this.barracks_status_dire = Integer.valueOf(barracks_status_dire.intValue());
+        this.cluster = Integer.valueOf(cluster.intValue());
+        this.first_blood_time = Integer.valueOf(first_blood_time.intValue());
+        this.human_players = Integer.valueOf(human_players.intValue());
+        this.positive_votes = Integer.valueOf(positive_votes.intValue());
+        this.negative_votes = Integer.valueOf(negative_votes.intValue());
         //this.picks_bans = picks_bans;
         this.lobbyType = lobbyType;
         this.gameMode = gameMode;
@@ -70,13 +69,13 @@ public class Match {
         this.match_id = match_id;
     }
 
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
+//    public String getSeason() {
+//        return season;
+//    }
+//
+//    public void setSeason(String season) {
+//        this.season = season;
+//    }
 
     public Boolean getRadiant_win() {
         return radiant_win;

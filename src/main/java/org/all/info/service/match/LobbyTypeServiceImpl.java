@@ -28,7 +28,7 @@ public class LobbyTypeServiceImpl implements LobbyTypeService{
     }
 
     @Override
-    public LobbyType read(Long id) {
+    public LobbyType read(Integer id) {
         return lobbyTypeDAO.read(id);
     }
 

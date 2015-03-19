@@ -30,8 +30,6 @@ public class LeagueParser {
 
     private static Logger log = LogManager.getLogger(League.class);
 
-    private final String JSON_PATH = "E:\\workspace\\dota2info\\src\\main\\resources\\data\\gameModes.json";
-
     private LeagueService leagueService = (LeagueService) SpringUtil.getApplicationContext().getBean("leagueService");
 
 

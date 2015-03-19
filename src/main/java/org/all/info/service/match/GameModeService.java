@@ -9,6 +9,6 @@ public interface GameModeService {
 
     public GameMode read(String name);
 
-    public GameMode read(Long id);
+    public GameMode read(Integer id);
 
 }

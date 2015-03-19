@@ -12,9 +12,4 @@ public interface MatchService {
 
     public void saveMatch(Match match);
 
-    public Long readLastMatchID();
-
-    public GameMode getGameMode(Long id);
-
-    public LobbyType getLobbyType(Long id);
 }

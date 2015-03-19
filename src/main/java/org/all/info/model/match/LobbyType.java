@@ -9,7 +9,6 @@ import java.util.Set;
 public class LobbyType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     private String name;

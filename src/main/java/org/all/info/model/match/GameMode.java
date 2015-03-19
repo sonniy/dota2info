@@ -9,7 +9,6 @@ import java.util.Set;
 public class GameMode {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     private String name;

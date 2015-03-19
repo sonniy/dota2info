@@ -27,7 +27,7 @@ public class GameModeServiceImpl implements GameModeService {
     }
 
     @Override
-    public GameMode read(Long id) {
+    public GameMode read(Integer id) {
         return gameModeDAO.read(id);
     }
 

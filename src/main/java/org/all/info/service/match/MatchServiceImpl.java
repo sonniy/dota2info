@@ -23,21 +23,6 @@ public class MatchServiceImpl implements MatchService{
         matchDAO.save(match);
     }
 
-    @Override
-    public Long readLastMatchID() {
-        return matchDAO.readLastMatchID();
-    }
-
-    @Override
-    public GameMode getGameMode(Long id) {
-        return null;
-    }
-
-    @Override
-    public LobbyType getLobbyType(Long id) {
-        return null;
-    }
-
     /* Getters and Setters */
     public MatchDAO getMatchDAO() {
         return matchDAO;

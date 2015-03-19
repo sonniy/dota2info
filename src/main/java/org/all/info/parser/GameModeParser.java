@@ -24,7 +24,7 @@ public class GameModeParser {
 
     private static Logger log = LogManager.getLogger(GameModeParser.class);
 
-    private final String JSON_PATH = "E:\\workspace\\dota2info\\src\\main\\resources\\data\\gameModes.json";
+    private final String JSON_PATH = "/home/yuriygorbylov/workspace/dota2all-info/src/main/resources/data/gameModes.json";
 
     private GameModeService gameModeService = (GameModeService) SpringUtil.getApplicationContext().getBean("gameModeService");
 
@@ -40,7 +40,7 @@ public class GameModeParser {
                 Long id = (Long) JSONGameMode.get("id");
                 String name = (String) JSONGameMode.get("name");
                 /* Checking for for matches */
-                GameMode check = gameModeService.read(id);
+                GameMode check = gameModeService.read(id.intValue());
                 if (check == null){
                     /* if check == null then matches have not been found, inserting the game mode name */
                     GameMode gameMode = new GameMode(id.intValue(), name);
