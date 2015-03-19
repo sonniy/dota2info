@@ -19,9 +19,9 @@ import java.sql.Statement;
 /* The class for parsing match_seq_num and match_id */
 public class MatchIDParser implements Runnable{
 
-    private MatchIDService matchIDService = (MatchIDService) SpringUtil.getApplicationContext().getBean("matchIDService");
-
     private static Logger log = LogManager.getLogger(MatchIDParser.class);
+
+    private MatchIDService matchIDService = (MatchIDService) SpringUtil.getApplicationContext().getBean("matchIDService");
 
     private String key = "0B9F3A6A9759528C543F28540C831C4A";
 
@@ -47,7 +47,7 @@ public class MatchIDParser implements Runnable{
                 if (matchIDService.isMatchExist(matchSeqNum)){
                     log.info("[ THE MATCH is not available ]");
                 } else{
-                    /* Adding match_id to DB */
+                    /* Adding matchID object to DB */
                     MatchID mID = new MatchID(matchSeqNum, matchID, false);
                     matchIDService.saveMatchID(mID);
                     log.info(String.format("[ THE MATCH: { match_id: %d, match_seq_num: %d } HAS BEEN ADDED ]", matchID, matchSeqNum));

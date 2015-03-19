@@ -10,6 +10,6 @@ public interface MatchDAO {
 
     public void saveMatch(Match match);
 
-
+    public Long readLastMatchID();
 
 }

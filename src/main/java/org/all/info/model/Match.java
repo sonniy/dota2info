@@ -10,7 +10,6 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "match_id")
     private Long match_id;
-    private Long match_seq_num;
     private String season;
     private Boolean radiant_win;
     private Long duration;
@@ -25,19 +24,24 @@ public class Match {
     private Integer positive_votes;
     private Integer negative_votes;
     private Integer picks_bans;
-    private Integer id_lobby_type;
-    private Integer game_mode;
-    private Integer leagueid;
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_lobby_type")
+    private LobbyType lobbyType;
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_mode")
+    private  GameMode gameMode;
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "leagueid")
+    private League league;
 
     public Match() {
     }
 
-    public Match(Long match_seq_num, String season, Boolean radiant_win, Long duration, Long start_time,
+    public Match(String season, Boolean radiant_win, Long duration, Long start_time,
                  Integer tower_status_radiant, Integer tower_status_dire, Integer barracks_status_radiant,
                  Integer barracks_status_dire, Integer cluster, Integer first_blood_time, Integer human_players,
-                 Integer positive_votes, Integer negative_votes, Integer picks_bans, Integer id_lobby_type, Integer game_mode,
-                 Integer leagueid) {
-        this.match_seq_num = match_seq_num;
+                 Integer positive_votes, Integer negative_votes, Integer picks_bans, LobbyType lobbyType,
+                 GameMode gameMode, League league) {
         this.season = season;
         this.radiant_win = radiant_win;
         this.duration = duration;
@@ -52,9 +56,9 @@ public class Match {
         this.positive_votes = positive_votes;
         this.negative_votes = negative_votes;
         this.picks_bans = picks_bans;
-        this.id_lobby_type = id_lobby_type;
-        this.game_mode = game_mode;
-        this.leagueid = leagueid;
+        this.lobbyType = lobbyType;
+        this.gameMode = gameMode;
+        this.league = league;
     }
 
     public Long getMatch_id() {
@@ -63,14 +67,6 @@ public class Match {
 
     public void setMatch_id(Long match_id) {
         this.match_id = match_id;
-    }
-
-    public Long getMatch_seq_num() {
-        return match_seq_num;
-    }
-
-    public void setMatch_seq_num(Long match_seq_num) {
-        this.match_seq_num = match_seq_num;
     }
 
     public String getSeason() {
@@ -185,27 +181,27 @@ public class Match {
         this.picks_bans = picks_bans;
     }
 
-    public Integer getId_lobby_type() {
-        return id_lobby_type;
+    public LobbyType getLobbyType() {
+        return lobbyType;
     }
 
-    public void setId_lobby_type(Integer id_lobby_type) {
-        this.id_lobby_type = id_lobby_type;
+    public void setLobbyType(LobbyType lobbyType) {
+        this.lobbyType = lobbyType;
     }
 
-    public Integer getGame_mode() {
-        return game_mode;
+    public GameMode getGameMode() {
+        return gameMode;
     }
 
-    public void setGame_mode(Integer game_mode) {
-        this.game_mode = game_mode;
+    public void setGameMode(GameMode gameMode) {
+        this.gameMode = gameMode;
     }
 
-    public Integer getLeagueid() {
-        return leagueid;
+    public League getLeague() {
+        return league;
     }
 
-    public void setLeagueid(Integer leagueid) {
-        this.leagueid = leagueid;
+    public void setLeague(League league) {
+        this.league = league;
     }
 }

@@ -23,6 +23,7 @@ public class MatchIDServiceImpl implements MatchIDService {
         return matchIDDAO.readLastMatchSeqNum();
     }
 
+
     @Override
     public Boolean isMatchExist(Long matchSeqNum) {
         return matchIDDAO.isMatchExist(matchSeqNum);

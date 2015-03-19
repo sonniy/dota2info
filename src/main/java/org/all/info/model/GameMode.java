@@ -5,29 +5,30 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "lobbyTypes")
-public class LobbyType {
+@Table(name = "gameModes")
+public class GameMode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "lobbyType")
+
+    @OneToMany(mappedBy = "gameMode")
     private Set<Match> matches = new HashSet<>();
 
-    public LobbyType() {
+    public GameMode() {
     }
 
-    public LobbyType(String name) {
+    public GameMode(String name) {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -37,10 +38,6 @@ public class LobbyType {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Set<Match> getMatches() {

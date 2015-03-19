@@ -22,6 +22,11 @@ public class MatchServiceImpl implements MatchService{
         matchDAO.saveMatch(match);
     }
 
+    @Override
+    public Long readLastMatchID() {
+        return matchDAO.readLastMatchID();
+    }
+
     /* Getters and Setters */
     public MatchDAO getMatchDAO() {
         return matchDAO;

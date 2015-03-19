@@ -9,4 +9,6 @@ import org.all.info.model.MatchID;
 public interface MatchService {
 
     public void saveMatch(Match match);
+
+    public Long readLastMatchID();
 }

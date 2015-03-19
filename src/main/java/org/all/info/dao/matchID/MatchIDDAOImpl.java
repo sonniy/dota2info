@@ -4,6 +4,7 @@ import org.all.info.model.MatchID;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,9 +21,9 @@ public class MatchIDDAOImpl implements MatchIDDAO {
     public void saveMatchID(MatchID matchID) {
         Session session = sessionFactory.getCurrentSession();
         session.save(matchID);
-
     }
 
+    /* Gives maximum match_seq_num */
     @Override
     public Long readLastMatchSeqNum() {
         Session session = sessionFactory.getCurrentSession();
@@ -31,7 +32,7 @@ public class MatchIDDAOImpl implements MatchIDDAO {
         if (matchID != null){
             return matchID.getMatch_seq_num();
         } else{
-            return Long.valueOf(1);
+            return Long.valueOf(240);
         }
 
     }
