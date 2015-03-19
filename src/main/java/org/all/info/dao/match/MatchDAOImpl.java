@@ -1,7 +1,10 @@
 package org.all.info.dao.match;
 
-import org.all.info.model.Match;
-import org.all.info.model.MatchID;
+import org.all.info.model.*;
+import org.all.info.model.match.GameMode;
+import org.all.info.model.match.League;
+import org.all.info.model.match.LobbyType;
+import org.all.info.model.match.Match;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
@@ -19,8 +22,21 @@ public class MatchDAOImpl implements MatchDAO {
     }
 
     @Override
-    public void saveMatch(Match match) {
+    public void save(Match match) {
+        /* TODO погуглить насчет сохранения many-to-one */
         Session session = sessionFactory.getCurrentSession();
+        League leagueDB = (League) session.get(League.class, match.getLeague().getId());
+        GameMode gameModeDB = (GameMode) session.get(GameMode.class, match.getGameMode().getId());
+        LobbyType lobbyTypeDB = (LobbyType) session.get(LobbyType.class, match.getLobbyType().getId());
+
+        leagueDB.getMatches().add(match);
+        gameModeDB.getMatches().add(match);
+        lobbyTypeDB.getMatches().add(match);
+
+        match.setLeague(leagueDB);
+        match.setGameMode(gameModeDB);
+        match.setLobbyType(lobbyTypeDB);
+
         session.save(match);
     }
 

@@ -1,4 +1,4 @@
-package org.all.info.model;
+package org.all.info.model.match;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -19,7 +19,8 @@ public class LobbyType {
     public LobbyType() {
     }
 
-    public LobbyType(String name) {
+    public LobbyType(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
 

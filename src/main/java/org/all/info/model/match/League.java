@@ -1,4 +1,4 @@
-package org.all.info.model;
+package org.all.info.model.match;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,7 +9,6 @@ import java.util.Set;
 public class League {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -25,7 +24,8 @@ public class League {
     public League() {
     }
 
-    public League(String name, String description, String tournament_url) {
+    public League(Long id, String name, String description, String tournament_url) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.tournament_url = tournament_url;

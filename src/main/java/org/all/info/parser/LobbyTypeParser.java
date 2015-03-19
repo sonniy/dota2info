@@ -2,23 +2,18 @@ package org.all.info.parser;
 
 
 
-import org.all.info.model.LobbyType;
+import org.all.info.model.match.LobbyType;
+import org.all.info.service.match.LobbyTypeService;
 import org.all.info.util.ConnectionFactory;
-import org.all.info.util.HTTPClientUtil;
 import org.all.info.util.SpringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -34,29 +29,28 @@ public class LobbyTypeParser {
 
     private final String JSON_PATH = "E:\\workspace\\dota2info\\src\\main\\resources\\data\\lobbyTypes.json";
 
+    private LobbyTypeService lobbyTypeService = (LobbyTypeService) SpringUtil.getApplicationContext().getBean("lobbyTypeService");
+
 
     public void saveLobbyTypes(){
-        String sql;
-        try (Connection con = ConnectionFactory.getConnection();
-             Statement st = con.createStatement()){
 
+        try {
             JSONParser parser = new JSONParser();
             JSONObject root = (JSONObject) parser.parse(new FileReader(new File(JSON_PATH)));
             JSONArray lobbyTypes = (JSONArray) root.get("lobbyTypes");
 
             for (int i = 0; i < lobbyTypes.size(); i++) {
-                JSONObject lobbyType = (JSONObject) lobbyTypes.get(i);
+                JSONObject JSONLobbyType = (JSONObject) lobbyTypes.get(i);
+                Long id = (Long) JSONLobbyType.get("id");
+                String name = (String) JSONLobbyType.get("name");
                 /* Checking for for matches */
-                sql = "SELECT  * FROM lobbyTypes WHERE name = '" + lobbyType.get("name") + "';";
-                ResultSet rs = st.executeQuery(sql);
-                if (!rs.next()){
+                LobbyType check = lobbyTypeService.read(id);
+
+                if (check == null){
                     /* if rs.next false then matches have not been found, inserting the lobby type name */
-                    sql = "INSERT INTO lobbyTypes(name) VALUES('" + lobbyType.get("name") + "');";
-                    if (!st.execute(sql)){
-                        log.info("Game mode has been saved");
-                    }else {
-                        log.info("ERROR");
-                    }
+                    LobbyType lobbyType = new LobbyType(id.intValue(), name);
+                    lobbyTypeService.save(lobbyType);
+                    log.info("Game mode has been saved");
                 } else{
                     log.info("The game type is already exists");
                 }
@@ -64,10 +58,6 @@ public class LobbyTypeParser {
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

@@ -1,4 +1,4 @@
-package org.all.info.model;
+package org.all.info.model.match;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,7 +20,8 @@ public class GameMode {
     public GameMode() {
     }
 
-    public GameMode(String name) {
+    public GameMode(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
 

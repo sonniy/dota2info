@@ -1,6 +1,9 @@
 package org.all.info.parser;
 
+import org.all.info.model.match.GameMode;
+import org.all.info.service.match.GameModeService;
 import org.all.info.util.ConnectionFactory;
+import org.all.info.util.SpringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -23,29 +26,26 @@ public class GameModeParser {
 
     private final String JSON_PATH = "E:\\workspace\\dota2info\\src\\main\\resources\\data\\gameModes.json";
 
+    private GameModeService gameModeService = (GameModeService) SpringUtil.getApplicationContext().getBean("gameModeService");
+
 
     public void saveGameMode(){
-        String sql;
-        try (Connection con = ConnectionFactory.getConnection();
-             Statement st = con.createStatement()){
-
+        try{
             JSONParser parser = new JSONParser();
             JSONObject root = (JSONObject) parser.parse(new FileReader(new File(JSON_PATH)));
             JSONArray gameModes = (JSONArray) root.get("gameModes");
 
             for (int i = 0; i < gameModes.size(); i++) {
-                JSONObject gameMode = (JSONObject) gameModes.get(i);
+                JSONObject JSONGameMode = (JSONObject) gameModes.get(i);
+                Long id = (Long) JSONGameMode.get("id");
+                String name = (String) JSONGameMode.get("name");
                 /* Checking for for matches */
-                sql = "SELECT  * FROM gameModes WHERE name = '" + gameMode.get("name") + "';";
-                ResultSet rs = st.executeQuery(sql);
-                if (!rs.next()){
-                    /* if rs.next false then matches have not been found, inserting the game mode name */
-                    sql = "INSERT INTO gameModes(name) VALUES('" + gameMode.get("name") + "');";
-                    if (!st.execute(sql)){
-                        log.info("Game mode has been saved");
-                    }else {
-                        log.info("ERROR");
-                    }
+                GameMode check = gameModeService.read(id);
+                if (check == null){
+                    /* if check == null then matches have not been found, inserting the game mode name */
+                    GameMode gameMode = new GameMode(id.intValue(), name);
+                    gameModeService.save(gameMode);
+                    log.info("Game mode has been saved");
                 } else{
                     log.info("The game type is already exists");
                 }
@@ -53,10 +53,6 @@ public class GameModeParser {
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

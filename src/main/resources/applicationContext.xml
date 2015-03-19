@@ -23,8 +23,10 @@
         <beans:property name="annotatedClasses">
             <beans:list>
                 <beans:value>org.all.info.model.MatchID</beans:value>
-                <beans:value>org.all.info.model.Match</beans:value>
-                <beans:value>org.all.info.model.LobbyType</beans:value>
+                <beans:value>org.all.info.model.match.Match</beans:value>
+                <beans:value>org.all.info.model.match.LobbyType</beans:value>
+                <beans:value>org.all.info.model.match.GameMode</beans:value>
+                <beans:value>org.all.info.model.match.League</beans:value>
             </beans:list>
         </beans:property>
         <beans:property name="hibernateProperties">
@@ -53,5 +55,17 @@
     <beans:bean id="matchIDDAO" class="org.all.info.dao.matchID.MatchIDDAOImpl"/>
 
     <beans:bean id="matchIDService" class="org.all.info.service.matchID.MatchIDServiceImpl"/>
+
+    <beans:bean id="leagueDAO" class="org.all.info.dao.match.LeagueDAOImpl"/>
+
+    <beans:bean id="leagueService" class="org.all.info.service.match.LeagueServiceImpl"/>
+
+    <beans:bean id="gameModeDAO" class="org.all.info.dao.match.GameModeDAOImpl"/>
+
+    <beans:bean id="gameModeService" class="org.all.info.service.match.GameModeServiceImpl"/>
+
+    <beans:bean id="lobbyTypeDAO" class="org.all.info.dao.match.LobbyTypeDAOImpl"/>
+
+    <beans:bean id="lobbyTypeService" class="org.all.info.service.match.LobbyTypeServiceImpl"/>
 
 </beans:beans>

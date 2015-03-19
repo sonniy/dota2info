@@ -1,4 +1,4 @@
-package org.all.info.model;
+package org.all.info.model.match;
 
 import javax.persistence.*;
 
@@ -23,7 +23,7 @@ public class Match {
     private Integer human_players;
     private Integer positive_votes;
     private Integer negative_votes;
-    private Integer picks_bans;
+    //private Integer picks_bans;
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_lobby_type")
     private LobbyType lobbyType;
@@ -37,11 +37,12 @@ public class Match {
     public Match() {
     }
 
-    public Match(String season, Boolean radiant_win, Long duration, Long start_time,
+    public Match(Long match_id, String season, Boolean radiant_win, Long duration, Long start_time,
                  Integer tower_status_radiant, Integer tower_status_dire, Integer barracks_status_radiant,
                  Integer barracks_status_dire, Integer cluster, Integer first_blood_time, Integer human_players,
-                 Integer positive_votes, Integer negative_votes, Integer picks_bans, LobbyType lobbyType,
+                 Integer positive_votes, Integer negative_votes /*Integer picks_bans*/, LobbyType lobbyType,
                  GameMode gameMode, League league) {
+        this.match_id = match_id;
         this.season = season;
         this.radiant_win = radiant_win;
         this.duration = duration;
@@ -55,7 +56,7 @@ public class Match {
         this.human_players = human_players;
         this.positive_votes = positive_votes;
         this.negative_votes = negative_votes;
-        this.picks_bans = picks_bans;
+        //this.picks_bans = picks_bans;
         this.lobbyType = lobbyType;
         this.gameMode = gameMode;
         this.league = league;
@@ -173,13 +174,13 @@ public class Match {
         this.negative_votes = negative_votes;
     }
 
-    public Integer getPicks_bans() {
+    /*public Integer getPicks_bans() {
         return picks_bans;
     }
 
     public void setPicks_bans(Integer picks_bans) {
         this.picks_bans = picks_bans;
-    }
+    }*/
 
     public LobbyType getLobbyType() {
         return lobbyType;
