@@ -14,9 +14,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by yuriygorbylov on 15.03.15.
- */
 public class HTTPClientUtil {
 
     private static Logger log = LogManager.getLogger(HTTPClientUtil.class);

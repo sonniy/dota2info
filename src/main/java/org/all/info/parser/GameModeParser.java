@@ -2,7 +2,6 @@ package org.all.info.parser;
 
 import org.all.info.model.match.GameMode;
 import org.all.info.service.match.GameModeService;
-import org.all.info.util.ConnectionFactory;
 import org.all.info.util.SpringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,20 +13,15 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /* The class gets all game modes from json file in "resources/data" folder */
 public class GameModeParser {
 
     private static Logger log = LogManager.getLogger(GameModeParser.class);
 
-    private final String JSON_PATH = "/home/yuriygorbylov/workspace/dota2all-info/src/main/resources/data/gameModes.json";
+    private final String JSON_PATH = "E:\\workspace\\dota2all-info\\src\\main\\resources\\data\\gameModes.json";
 
     private GameModeService gameModeService = (GameModeService) SpringUtil.getApplicationContext().getBean("gameModeService");
-
 
     public void saveGameMode(){
         try{
@@ -39,7 +33,7 @@ public class GameModeParser {
                 JSONObject JSONGameMode = (JSONObject) gameModes.get(i);
                 Long id = (Long) JSONGameMode.get("id");
                 String name = (String) JSONGameMode.get("name");
-                /* Checking for for matches */
+                /* Checking for matches */
                 GameMode check = gameModeService.read(id.intValue());
                 if (check == null){
                     /* if check == null then matches have not been found, inserting the game mode name */

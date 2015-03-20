@@ -12,7 +12,6 @@ public class GameMode {
     @Column(name = "id")
     private Integer id;
     private String name;
-
     @OneToMany(mappedBy = "gameMode")
     private Set<Match> matches = new HashSet<>();
 

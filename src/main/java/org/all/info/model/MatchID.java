@@ -8,6 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "matchID")
 public class MatchID {
+
     @Id
     @Column(name = "match_seq_num")
     private Long match_seq_num;

@@ -11,13 +11,9 @@ public class League {
     @Id
     @Column(name = "id")
     private Long id;
-
     private String name;
-
     private String description;
-
     private String tournament_url;
-
     @OneToMany(mappedBy = "league")
     private Set<Match> matches = new HashSet<>();
 

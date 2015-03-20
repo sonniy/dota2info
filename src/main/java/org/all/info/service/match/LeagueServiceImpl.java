@@ -1,9 +1,7 @@
 package org.all.info.service.match;
 
-
 import org.all.info.dao.match.LeagueDAO;
 import org.all.info.model.match.League;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

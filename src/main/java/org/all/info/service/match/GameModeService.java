@@ -1,6 +1,5 @@
 package org.all.info.service.match;
 
-
 import org.all.info.model.match.GameMode;
 
 public interface GameModeService {

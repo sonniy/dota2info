@@ -1,6 +1,5 @@
 package org.all.info.dao.match;
 
-import org.all.info.model.match.GameMode;
 import org.all.info.model.match.LobbyType;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

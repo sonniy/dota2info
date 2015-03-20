@@ -2,26 +2,14 @@ package org.all.info.parser;
 
 import org.all.info.model.match.League;
 import org.all.info.service.match.LeagueService;
-import org.all.info.util.ConnectionFactory;
 import org.all.info.util.HTTPClientUtil;
 import org.all.info.util.SpringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-
+/* The class gets all leagues from DOTA2 API */
 public class LeagueParser {
 
     private String key = "0B9F3A6A9759528C543F28540C831C4A";
@@ -31,7 +19,6 @@ public class LeagueParser {
     private static Logger log = LogManager.getLogger(League.class);
 
     private LeagueService leagueService = (LeagueService) SpringUtil.getApplicationContext().getBean("leagueService");
-
 
     public void saveGameMode(){
 
@@ -43,7 +30,6 @@ public class LeagueParser {
                 JSONObject JSONLeague = (JSONObject) leagues.get(i);
                 /* Checking for for matches */
                 League check = leagueService.read((Long) JSONLeague.get("leagueid"));
-
                 if (check == null){
                     /* if check != null false then matches have not been found, inserting the league into DB */
                     Long leagueid = (Long) JSONLeague.get("leagueid");
