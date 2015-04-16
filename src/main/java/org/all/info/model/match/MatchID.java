@@ -1,4 +1,4 @@
-package org.all.info.model;
+package org.all.info.model.match;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

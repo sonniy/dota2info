@@ -1,7 +1,7 @@
-package org.all.info.parser;
+package org.all.info.parser.match;
 
-import org.all.info.model.MatchID;
-import org.all.info.service.matchID.MatchIDService;
+import org.all.info.model.match.MatchID;
+import org.all.info.service.match.MatchIDService;
 import org.all.info.util.HTTPClientUtil;
 import org.all.info.util.SpringUtil;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +26,7 @@ public class MatchIDParser implements Runnable{
     public void run() {
 
 
-        while (true){
+        while (!Thread.currentThread().isInterrupted()){
             /* Getting last match_seq_num from DB and taking the next*/
             Long lastMatchSeqNum = matchIDService.readLastMatchSeqNum() + 1;
             /* Getting JSON object with match_id information */

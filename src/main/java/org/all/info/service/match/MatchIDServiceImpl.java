@@ -1,7 +1,7 @@
-package org.all.info.service.matchID;
+package org.all.info.service.match;
 
-import org.all.info.dao.matchID.MatchIDDAO;
-import org.all.info.model.MatchID;
+import org.all.info.dao.match.MatchIDDAO;
+import org.all.info.model.match.MatchID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

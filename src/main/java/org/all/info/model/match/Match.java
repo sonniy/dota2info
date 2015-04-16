@@ -9,7 +9,6 @@ public class Match {
     @Id
     @Column(name = "match_id")
     private Long match_id;
-    //private String season;
     private Boolean radiant_win;
     private Long duration;
     private Long start_time;
@@ -22,7 +21,6 @@ public class Match {
     private Integer human_players;
     private Integer positive_votes;
     private Integer negative_votes;
-    //private Integer picks_bans;
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_lobby_type")
     private LobbyType lobbyType;
@@ -36,13 +34,12 @@ public class Match {
     public Match() {
     }
 
-    public Match(Long match_id /*String season*/, Boolean radiant_win, Long duration, Long start_time,
+    public Match(Long match_id, Boolean radiant_win, Long duration, Long start_time,
                  Long tower_status_radiant, Long tower_status_dire, Long barracks_status_radiant,
                  Long barracks_status_dire, Long cluster, Long first_blood_time, Long human_players,
-                 Long positive_votes, Long negative_votes /*Integer picks_bans*/, LobbyType lobbyType,
+                 Long positive_votes, Long negative_votes, LobbyType lobbyType,
                  GameMode gameMode, League league) {
         this.match_id = match_id;
-        //this.season = season;
         this.radiant_win = radiant_win;
         this.duration = duration;
         this.start_time = start_time;
@@ -55,7 +52,6 @@ public class Match {
         this.human_players = Integer.valueOf(human_players.intValue());
         this.positive_votes = Integer.valueOf(positive_votes.intValue());
         this.negative_votes = Integer.valueOf(negative_votes.intValue());
-        //this.picks_bans = picks_bans;
         this.lobbyType = lobbyType;
         this.gameMode = gameMode;
         this.league = league;
@@ -68,14 +64,6 @@ public class Match {
     public void setMatch_id(Long match_id) {
         this.match_id = match_id;
     }
-
-//    public String getSeason() {
-//        return season;
-//    }
-//
-//    public void setSeason(String season) {
-//        this.season = season;
-//    }
 
     public Boolean getRadiant_win() {
         return radiant_win;
@@ -172,14 +160,6 @@ public class Match {
     public void setNegative_votes(Integer negative_votes) {
         this.negative_votes = negative_votes;
     }
-
-    /*public Integer getPicks_bans() {
-        return picks_bans;
-    }
-
-    public void setPicks_bans(Integer picks_bans) {
-        this.picks_bans = picks_bans;
-    }*/
 
     public LobbyType getLobbyType() {
         return lobbyType;

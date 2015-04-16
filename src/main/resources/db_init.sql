@@ -2,6 +2,8 @@ CREATE DATABASE IF NOT EXISTS dota2info;
 
 USE dota2info;
 
+/*MATCHES*/
+
 CREATE TABLE matchID(
   match_seq_num BIGINT PRIMARY KEY,
   match_id BIGINT,
@@ -10,12 +12,12 @@ CREATE TABLE matchID(
 
 CREATE TABLE lobbyTypes(
   id TINYINT PRIMARY KEY,
-  name VARCHAR(45)
+  name VARCHAR(64)
 );
 
 CREATE TABLE gameModes(
   id TINYINT PRIMARY KEY,
-  name VARCHAR(45)
+  name VARCHAR(64)
 );
 
 CREATE TABLE leagues(
@@ -47,4 +49,16 @@ CREATE TABLE matches(
   FOREIGN KEY (id_lobby_type) REFERENCES lobbyTypes(id),
   FOREIGN KEY (game_mode) REFERENCES gameModes(id),
   FOREIGN KEY (leagueid) REFERENCES leagues(id)
+);
+
+/*PLAYER*/
+
+CREATE TABLE heroes(
+  id INT PRIMARY KEY,
+  name VARCHAR(64),
+  localized_name VARCHAR(64),
+  small_img VARCHAR(128),
+  large_img VARCHAR(128),
+  full_vertical_img VARCHAR(128),
+  full_horizontal_img VARCHAR(128)
 );

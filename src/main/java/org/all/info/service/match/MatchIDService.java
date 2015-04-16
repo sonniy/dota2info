@@ -1,10 +1,10 @@
-package org.all.info.dao.matchID;
+package org.all.info.service.match;
 
-import org.all.info.model.MatchID;
+import org.all.info.model.match.MatchID;
 
-public interface MatchIDDAO {
+public interface MatchIDService {
 
-    public void save(MatchID matchID);
+    public void saveMatchID(MatchID matchID);
 
     public MatchID read(Long matchID);
 
@@ -15,5 +15,4 @@ public interface MatchIDDAO {
     public void update(MatchID matchID);
 
     public Boolean isMatchExist(Long matchSeqNum);
-
 }

@@ -1,6 +1,6 @@
-package org.all.info.dao.matchID;
+package org.all.info.dao.match;
 
-import org.all.info.model.MatchID;
+import org.all.info.model.match.MatchID;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;

@@ -1,6 +1,7 @@
 package org.all.info.parser;
 
 
+import org.all.info.parser.match.MatchIDParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

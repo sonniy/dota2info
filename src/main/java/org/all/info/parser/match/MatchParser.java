@@ -1,6 +1,6 @@
-package org.all.info.parser;
+package org.all.info.parser.match;
 
-import org.all.info.model.MatchID;
+import org.all.info.model.match.MatchID;
 import org.all.info.model.match.GameMode;
 import org.all.info.model.match.League;
 import org.all.info.model.match.LobbyType;
@@ -9,7 +9,7 @@ import org.all.info.service.match.GameModeService;
 import org.all.info.service.match.LeagueService;
 import org.all.info.service.match.LobbyTypeService;
 import org.all.info.service.match.MatchService;
-import org.all.info.service.matchID.MatchIDService;
+import org.all.info.service.match.MatchIDService;
 import org.all.info.util.HTTPClientUtil;
 import org.all.info.util.SpringUtil;
 import org.apache.logging.log4j.LogManager;
@@ -36,7 +36,7 @@ public class MatchParser implements Runnable {
     @Override
     public void run() {
 
-        while (true){
+        while (!Thread.currentThread().isInterrupted()){
             /* Getting last match_id from DB which was not parsed */
             Long lastMatchID = matchIDService.readLastMatchID();
 
@@ -71,7 +71,7 @@ public class MatchParser implements Runnable {
                     tower_status_dire, barracks_status_radiant, barracks_status_dire, cluster, first_blood_time,
                     human_players, positive_votes, negative_votes, lobbyType, gameMode, league);
 
-            /* Saving the mach to DB */
+            /* Saving the match to DB */
             matchService.saveMatch(match);
             /* Marking in matchID table that this match has been parsed */
             MatchID matchID = matchIDService.read(lastMatchID);

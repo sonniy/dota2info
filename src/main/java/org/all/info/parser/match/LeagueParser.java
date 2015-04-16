@@ -1,4 +1,4 @@
-package org.all.info.parser;
+package org.all.info.parser.match;
 
 import org.all.info.model.match.League;
 import org.all.info.service.match.LeagueService;

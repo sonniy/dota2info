@@ -22,11 +22,13 @@
         <beans:property name="dataSource" ref="dataSource"/>
         <beans:property name="annotatedClasses">
             <beans:list>
-                <beans:value>org.all.info.model.MatchID</beans:value>
+                <beans:value>org.all.info.model.match.MatchID</beans:value>
                 <beans:value>org.all.info.model.match.Match</beans:value>
                 <beans:value>org.all.info.model.match.LobbyType</beans:value>
                 <beans:value>org.all.info.model.match.GameMode</beans:value>
                 <beans:value>org.all.info.model.match.League</beans:value>
+                <beans:value>org.all.info.model.player.Hero</beans:value>
+                <beans:value>org.all.info.model.player.Item</beans:value>
             </beans:list>
         </beans:property>
         <beans:property name="hibernateProperties">
@@ -48,13 +50,15 @@
     </beans:bean>
 
     <!-- Beans -->
+
+        <!-- match -->
     <beans:bean id="matchDAO" class="org.all.info.dao.match.MatchDAOImpl"/>
 
     <beans:bean id="matchService" class="org.all.info.service.match.MatchServiceImpl"/>
 
-    <beans:bean id="matchIDDAO" class="org.all.info.dao.matchID.MatchIDDAOImpl"/>
+    <beans:bean id="matchIDDAO" class="org.all.info.dao.match.MatchIDDAOImpl"/>
 
-    <beans:bean id="matchIDService" class="org.all.info.service.matchID.MatchIDServiceImpl"/>
+    <beans:bean id="matchIDService" class="org.all.info.service.match.MatchIDServiceImpl"/>
 
     <beans:bean id="leagueDAO" class="org.all.info.dao.match.LeagueDAOImpl"/>
 
@@ -67,5 +71,14 @@
     <beans:bean id="lobbyTypeDAO" class="org.all.info.dao.match.LobbyTypeDAOImpl"/>
 
     <beans:bean id="lobbyTypeService" class="org.all.info.service.match.LobbyTypeServiceImpl"/>
+
+        <!-- player -->
+    <beans:bean id="heroDAO" class="org.all.info.dao.player.HeroDAOImpl"/>
+
+    <beans:bean id="heroService" class="org.all.info.service.player.HeroServiceImpl"/>
+
+    <beans:bean id="itemDAO" class="org.all.info.dao.player.ItemDAOImpl"/>
+
+    <beans:bean id="itemService" class="org.all.info.service.player.ItemServiceImpl"/>
 
 </beans:beans>
