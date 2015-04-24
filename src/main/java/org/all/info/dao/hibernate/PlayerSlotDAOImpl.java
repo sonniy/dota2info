@@ -1,5 +1,6 @@
-package org.all.info.dao.player;
+package org.all.info.dao.hibernate;
 
+import org.all.info.dao.PlayerSlotDAO;
 import org.all.info.model.player.PlayerSlot;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PlayerSlotDAOImpl implements PlayerSlotDAO{
+public class PlayerSlotDAOImpl implements PlayerSlotDAO {
 
     @Autowired
     private SessionFactory sessionFactory;

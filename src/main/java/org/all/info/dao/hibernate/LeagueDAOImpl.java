@@ -1,5 +1,6 @@
-package org.all.info.dao.match;
+package org.all.info.dao.hibernate;
 
+import org.all.info.dao.LeagueDAO;
 import org.all.info.model.match.League;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

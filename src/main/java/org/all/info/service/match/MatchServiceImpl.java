@@ -1,6 +1,6 @@
 package org.all.info.service.match;
 
-import org.all.info.dao.match.MatchDAO;
+import org.all.info.dao.MatchDAO;
 import org.all.info.model.match.Match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

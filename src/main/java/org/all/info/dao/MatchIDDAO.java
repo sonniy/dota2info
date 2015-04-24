@@ -1,12 +1,12 @@
-package org.all.info.dao.match;
+package org.all.info.dao;
 
 import org.all.info.model.match.MatchID;
 
 public interface MatchIDDAO {
 
-    public void save(MatchID matchID);
+    public void save(MatchID matchID) throws Exception;
 
-    public MatchID read(Long matchID);
+    public MatchID read(Long matchID) throws Exception;
 
     public Long readLastMatchSeqNum();
 
@@ -14,6 +14,6 @@ public interface MatchIDDAO {
 
     public void update(MatchID matchID);
 
-    public Boolean isMatchExist(Long matchSeqNum);
+    public Boolean isMatchSeqNumExist(Long matchSeqNum);
 
 }

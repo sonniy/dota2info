@@ -1,6 +1,7 @@
-package org.all.info.dao.player;
+package org.all.info.dao.hibernate;
 
-import org.all.info.model.player.Item;
+import org.all.info.dao.GameModeDAO;
+import org.all.info.model.match.GameMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -8,34 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ItemDAOImpl implements ItemDAO{
+public class GameModeDAOImpl implements GameModeDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public ItemDAOImpl() {
+    public GameModeDAOImpl() {
     }
 
     @Override
-    public void save(Item item) {
+    public void save(GameMode gameMode) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(item);
+        session.save(gameMode);
     }
 
     @Override
-    public Item read(String name) {
+    public GameMode read(String name) {
         Session session = sessionFactory.getCurrentSession();
-        Item item = (Item) session.createCriteria(Item.class)
+        GameMode gameMode = (GameMode) session.createCriteria(GameMode.class)
                 .add(Restrictions.eq("name", name))
                 .setMaxResults(1).uniqueResult();
-        return item;
+        return gameMode;
     }
 
     @Override
-    public Item read(Integer id) {
+    public GameMode read(Integer id) {
         Session session = sessionFactory.getCurrentSession();
-        Item item = (Item) session.get(Item.class, id);
-        return item;
+        GameMode gameMode = (GameMode) session.get(GameMode.class, id);
+        return  gameMode;
     }
 
     public SessionFactory getSessionFactory() {

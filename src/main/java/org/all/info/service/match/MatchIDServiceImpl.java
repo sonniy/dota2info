@@ -1,6 +1,6 @@
 package org.all.info.service.match;
 
-import org.all.info.dao.match.MatchIDDAO;
+import org.all.info.dao.MatchIDDAO;
 import org.all.info.model.match.MatchID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,22 @@ public class MatchIDServiceImpl implements MatchIDService {
 
     @Override
     public void saveMatchID(MatchID matchID) {
-        matchIDDAO.save(matchID);
+        try {
+            matchIDDAO.save(matchID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public MatchID read(Long matchID) {
-        return matchIDDAO.read(matchID);
+        try {
+            return matchIDDAO.read(matchID);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -40,6 +50,6 @@ public class MatchIDServiceImpl implements MatchIDService {
 
     @Override
     public Boolean isMatchExist(Long matchSeqNum) {
-        return matchIDDAO.isMatchExist(matchSeqNum);
+        return matchIDDAO.isMatchSeqNumExist(matchSeqNum);
     }
 }

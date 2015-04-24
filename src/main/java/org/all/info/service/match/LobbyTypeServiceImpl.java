@@ -1,6 +1,6 @@
 package org.all.info.service.match;
 
-import org.all.info.dao.match.LobbyTypeDAO;
+import org.all.info.dao.LobbyTypeDAO;
 import org.all.info.model.match.LobbyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

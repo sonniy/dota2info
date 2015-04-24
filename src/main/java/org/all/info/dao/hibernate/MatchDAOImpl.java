@@ -1,6 +1,6 @@
-package org.all.info.dao.match;
+package org.all.info.dao.hibernate;
 
-import org.all.info.model.*;
+import org.all.info.dao.MatchDAO;
 import org.all.info.model.match.GameMode;
 import org.all.info.model.match.League;
 import org.all.info.model.match.LobbyType;

@@ -49,4 +49,13 @@ public class MatchID {
     public void setIsParsed(Boolean isParsed) {
         this.isParsed = isParsed;
     }
+
+    @Override
+    public String toString() {
+        return "MatchID{" +
+                "match_seq_num=" + match_seq_num +
+                ", match_id=" + match_id +
+                ", isParsed=" + isParsed +
+                '}';
+    }
 }

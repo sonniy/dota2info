@@ -1,6 +1,6 @@
 package org.all.info.service.player;
 
-import org.all.info.dao.player.HeroDAO;
+import org.all.info.dao.HeroDAO;
 import org.all.info.model.player.Hero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

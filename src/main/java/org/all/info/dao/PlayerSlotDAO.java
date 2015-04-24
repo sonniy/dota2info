@@ -1,4 +1,4 @@
-package org.all.info.dao.player;
+package org.all.info.dao;
 
 
 import org.all.info.model.player.PlayerSlot;

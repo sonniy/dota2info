@@ -1,4 +1,4 @@
-package org.all.info.dao.match;
+package org.all.info.dao;
 
 import org.all.info.model.match.League;
 

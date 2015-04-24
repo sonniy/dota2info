@@ -1,6 +1,7 @@
-package org.all.info.dao.match;
+package org.all.info.dao.hibernate;
 
-import org.all.info.model.match.LobbyType;
+import org.all.info.dao.ItemDAO;
+import org.all.info.model.player.Item;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -8,34 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class LobbyTypeDAOImpl implements LobbyTypeDAO {
+public class ItemDAOImpl implements ItemDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public LobbyTypeDAOImpl() {
+    public ItemDAOImpl() {
     }
 
     @Override
-    public void save(LobbyType lobbyType) {
+    public void save(Item item) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(lobbyType);
+        session.save(item);
     }
 
     @Override
-    public LobbyType read(String name) {
+    public Item read(String name) {
         Session session = sessionFactory.getCurrentSession();
-        LobbyType lobbyType = (LobbyType) session.createCriteria(LobbyType.class)
+        Item item = (Item) session.createCriteria(Item.class)
                 .add(Restrictions.eq("name", name))
                 .setMaxResults(1).uniqueResult();
-        return lobbyType;
+        return item;
     }
 
     @Override
-    public LobbyType read(Integer id) {
+    public Item read(Integer id) {
         Session session = sessionFactory.getCurrentSession();
-        LobbyType lobbyType = (LobbyType) session.get(LobbyType.class, id);
-        return lobbyType;
+        Item item = (Item) session.get(Item.class, id);
+        return item;
     }
 
     public SessionFactory getSessionFactory() {

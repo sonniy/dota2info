@@ -1,5 +1,6 @@
-package org.all.info.dao.match;
+package org.all.info.dao.hibernate;
 
+import org.all.info.dao.MatchIDDAO;
 import org.all.info.model.match.MatchID;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -69,7 +70,7 @@ public class MatchIDDAOImpl implements MatchIDDAO {
     }
 
     @Override
-    public Boolean isMatchExist(Long matchSeqNum) {
+    public Boolean isMatchSeqNumExist(Long matchSeqNum) {
         Session session = sessionFactory.getCurrentSession();
         MatchID matchID = (MatchID) session.get(MatchID.class, matchSeqNum);
         return matchID != null;

@@ -52,32 +52,32 @@
     <!-- Beans -->
 
         <!-- match -->
-    <beans:bean id="matchDAO" class="org.all.info.dao.match.MatchDAOImpl"/>
+    <beans:bean id="matchDAO" class="org.all.info.dao.hibernate.MatchDAOImpl"/>
 
     <beans:bean id="matchService" class="org.all.info.service.match.MatchServiceImpl"/>
 
-    <beans:bean id="matchIDDAO" class="org.all.info.dao.match.MatchIDDAOImpl"/>
+    <beans:bean id="matchIDDAO" class="org.all.info.dao.hibernate.MatchIDDAOImpl"/>
 
     <beans:bean id="matchIDService" class="org.all.info.service.match.MatchIDServiceImpl"/>
 
-    <beans:bean id="leagueDAO" class="org.all.info.dao.match.LeagueDAOImpl"/>
+    <beans:bean id="leagueDAO" class="org.all.info.dao.hibernate.LeagueDAOImpl"/>
 
     <beans:bean id="leagueService" class="org.all.info.service.match.LeagueServiceImpl"/>
 
-    <beans:bean id="gameModeDAO" class="org.all.info.dao.match.GameModeDAOImpl"/>
+    <beans:bean id="gameModeDAO" class="org.all.info.dao.hibernate.GameModeDAOImpl"/>
 
     <beans:bean id="gameModeService" class="org.all.info.service.match.GameModeServiceImpl"/>
 
-    <beans:bean id="lobbyTypeDAO" class="org.all.info.dao.match.LobbyTypeDAOImpl"/>
+    <beans:bean id="lobbyTypeDAO" class="org.all.info.dao.hibernate.LobbyTypeDAOImpl"/>
 
     <beans:bean id="lobbyTypeService" class="org.all.info.service.match.LobbyTypeServiceImpl"/>
 
         <!-- player -->
-    <beans:bean id="heroDAO" class="org.all.info.dao.player.HeroDAOImpl"/>
+    <beans:bean id="heroDAO" class="org.all.info.dao.hibernate.HeroDAOImpl"/>
 
     <beans:bean id="heroService" class="org.all.info.service.player.HeroServiceImpl"/>
 
-    <beans:bean id="itemDAO" class="org.all.info.dao.player.ItemDAOImpl"/>
+    <beans:bean id="itemDAO" class="org.all.info.dao.hibernate.ItemDAOImpl"/>
 
     <beans:bean id="itemService" class="org.all.info.service.player.ItemServiceImpl"/>
 

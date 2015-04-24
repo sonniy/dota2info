@@ -1,6 +1,6 @@
 package org.all.info.service.player;
 
-import org.all.info.dao.player.ItemDAO;
+import org.all.info.dao.ItemDAO;
 import org.all.info.model.player.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package org.all.info.dao.player;
+package org.all.info.dao.hibernate;
 
-import org.all.info.dao.player.HeroDAO;
-import org.all.info.model.player.Hero;
+import org.all.info.dao.LobbyTypeDAO;
+import org.all.info.model.match.LobbyType;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -9,34 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class HeroDAOImpl implements HeroDAO {
+public class LobbyTypeDAOImpl implements LobbyTypeDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public HeroDAOImpl() {
+    public LobbyTypeDAOImpl() {
     }
 
     @Override
-    public void save(Hero hero) {
+    public void save(LobbyType lobbyType) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(hero);
+        session.save(lobbyType);
     }
 
     @Override
-    public Hero read(String name) {
+    public LobbyType read(String name) {
         Session session = sessionFactory.getCurrentSession();
-        Hero hero = (Hero) session.createCriteria(Hero.class)
+        LobbyType lobbyType = (LobbyType) session.createCriteria(LobbyType.class)
                 .add(Restrictions.eq("name", name))
                 .setMaxResults(1).uniqueResult();
-        return hero;
+        return lobbyType;
     }
 
     @Override
-    public Hero read(Integer id) {
+    public LobbyType read(Integer id) {
         Session session = sessionFactory.getCurrentSession();
-        Hero hero = (Hero) session.get(Hero.class, id);
-        return hero;
+        LobbyType lobbyType = (LobbyType) session.get(LobbyType.class, id);
+        return lobbyType;
     }
 
     public SessionFactory getSessionFactory() {
