@@ -29,6 +29,11 @@ public class LeagueDAOImpl implements LeagueDAO {
         return league;
     }
 
+    @Override
+    public League read(String name) {
+        return null;
+    }
+
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }

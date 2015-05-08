@@ -44,20 +44,18 @@ public class MatchParser implements Runnable {
             JSONObject result = (JSONObject) root.get("result");
 
             Long match_id = (Long) result.get("match_id");
-            //String season = (String) result.get("season"); не ясно что это такое
             Boolean radiant_win = (Boolean) result.get("radiant_win");
             Long duration = (Long) result.get("duration");
             Long start_time = (Long) result.get("start_time");
-            Long tower_status_radiant = (Long) result.get("tower_status_radiant");
-            Long tower_status_dire = (Long) result.get("tower_status_dire");
-            Long barracks_status_radiant = (Long) result.get("barracks_status_radiant");
-            Long barracks_status_dire = (Long) result.get("barracks_status_dire");
-            Long cluster = (Long) result.get("cluster");
-            Long first_blood_time = (Long) result.get("first_blood_time");
-            Long human_players = (Long) result.get("human_players");
-            Long positive_votes = (Long) result.get("positive_votes");
-            Long negative_votes = (Long) result.get("negative_votes");
-            //Long picks_bans = (Long) result.get("picks_bans"); нужно сначала реализовать
+            Integer tower_status_radiant = (Integer) result.get("tower_status_radiant");
+            Integer tower_status_dire = (Integer) result.get("tower_status_dire");
+            Integer barracks_status_radiant = (Integer) result.get("barracks_status_radiant");
+            Integer barracks_status_dire = (Integer) result.get("barracks_status_dire");
+            Integer cluster = (Integer) result.get("cluster");
+            Integer first_blood_time = (Integer) result.get("first_blood_time");
+            Integer human_players = (Integer) result.get("human_players");
+            Integer positive_votes = (Integer) result.get("positive_votes");
+            Integer negative_votes = (Integer) result.get("negative_votes");
 
             /* Getting from tables (lobbyTypes, gameModes, leagues) existing object by IDs*/
             Long lobbyTypeID = (Long) result.get("lobby_type");

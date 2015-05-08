@@ -1,21 +1,14 @@
 package org.all.info.test;
 
-import org.all.info.dao.jdbc.MatchIDDAOImpl;
-import org.all.info.model.match.MatchID;
+import org.all.info.dao.MatchDAO;
+import org.all.info.dao.jdbc.MatchDAOImpl;
 
 public class TestDB {
 
     public static void main(String[] args) {
 
-        MatchIDDAOImpl m = new MatchIDDAOImpl();
+        MatchDAO m = new MatchDAOImpl();
 
-        MatchID matchID = new MatchID(3785L, 4748L, false);
-
-        try {
-            m.update(new MatchID(3785L, 4748L, true));
-            System.out.println(m.read(4748L));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(m.read(496));
     }
 }

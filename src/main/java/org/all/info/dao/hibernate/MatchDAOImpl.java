@@ -38,6 +38,11 @@ public class MatchDAOImpl implements MatchDAO {
         session.save(match);
     }
 
+    @Override
+    public Match read(Integer id) {
+        return null;
+    }
+
     /* Getters and Setters */
     public SessionFactory getSessionFactory() {
         return sessionFactory;

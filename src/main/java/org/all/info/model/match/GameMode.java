@@ -18,6 +18,10 @@ public class GameMode {
     public GameMode() {
     }
 
+    public GameMode(String name) {
+        this.name = name;
+    }
+
     public GameMode(Integer id, String name) {
         this.id = id;
         this.name = name;
@@ -45,5 +49,13 @@ public class GameMode {
 
     public void setMatches(Set<Match> matches) {
         this.matches = matches;
+    }
+
+    @Override
+    public String toString() {
+        return "GameMode{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

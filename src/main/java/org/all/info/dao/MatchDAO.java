@@ -6,5 +6,7 @@ public interface MatchDAO {
 
     public void save(Match match);
 
+    public Match read(Integer id);
+
 
 }

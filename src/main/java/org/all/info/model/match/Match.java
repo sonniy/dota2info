@@ -35,9 +35,9 @@ public class Match {
     }
 
     public Match(Long match_id, Boolean radiant_win, Long duration, Long start_time,
-                 Long tower_status_radiant, Long tower_status_dire, Long barracks_status_radiant,
-                 Long barracks_status_dire, Long cluster, Long first_blood_time, Long human_players,
-                 Long positive_votes, Long negative_votes, LobbyType lobbyType,
+                 Integer tower_status_radiant, Integer tower_status_dire, Integer barracks_status_radiant,
+                 Integer barracks_status_dire, Integer cluster, Integer first_blood_time, Integer human_players,
+                 Integer positive_votes, Integer negative_votes, LobbyType lobbyType,
                  GameMode gameMode, League league) {
         this.match_id = match_id;
         this.radiant_win = radiant_win;
@@ -183,5 +183,27 @@ public class Match {
 
     public void setLeague(League league) {
         this.league = league;
+    }
+
+    @Override
+    public String toString() {
+        return "Match{" +
+                "match_id=" + match_id +
+                ", radiant_win=" + radiant_win +
+                ", duration=" + duration +
+                ", start_time=" + start_time +
+                ", tower_status_radiant=" + tower_status_radiant +
+                ", tower_status_dire=" + tower_status_dire +
+                ", barracks_status_radiant=" + barracks_status_radiant +
+                ", barracks_status_dire=" + barracks_status_dire +
+                ", cluster=" + cluster +
+                ", first_blood_time=" + first_blood_time +
+                ", human_players=" + human_players +
+                ", positive_votes=" + positive_votes +
+                ", negative_votes=" + negative_votes +
+                ", lobbyType=" + lobbyType +
+                ", gameMode=" + gameMode +
+                ", league=" + league +
+                '}';
     }
 }

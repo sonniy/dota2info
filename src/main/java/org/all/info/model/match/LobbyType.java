@@ -18,6 +18,10 @@ public class LobbyType {
     public LobbyType() {
     }
 
+    public LobbyType(String name){
+        this.name = name;
+    }
+
     public LobbyType(Integer id, String name) {
         this.id = id;
         this.name = name;
@@ -49,5 +53,13 @@ public class LobbyType {
 
     public void setMatches(Set<Match> matches) {
         this.matches = matches;
+    }
+
+    @Override
+    public String toString() {
+        return "LobbyType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

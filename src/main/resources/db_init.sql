@@ -29,7 +29,6 @@ CREATE TABLE leagues(
 
 CREATE TABLE matches(
   match_id BIGINT UNIQUE PRIMARY KEY,
-  season VARCHAR(45),
   radiant_win BOOLEAN,
   duration BIGINT,
   start_time BIGINT,
@@ -42,7 +41,6 @@ CREATE TABLE matches(
   human_players INT,
   positive_votes INT,
   negative_votes INT,
-  picks_bans VARCHAR(45),
   id_lobby_type TINYINT,
   game_mode TINYINT,
   leagueid BIGINT,

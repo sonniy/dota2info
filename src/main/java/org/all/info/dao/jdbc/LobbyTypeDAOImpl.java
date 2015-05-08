@@ -1,53 +1,53 @@
 package org.all.info.dao.jdbc;
 
-import org.all.info.dao.GameModeDAO;
-import org.all.info.model.match.GameMode;
+import org.all.info.dao.LobbyTypeDAO;
+import org.all.info.model.match.LobbyType;
 import org.all.info.util.ConnectionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 
-public class GameModeDAOImpl implements GameModeDAO{
+public class LobbyTypeDAOImpl implements LobbyTypeDAO {
 
     private final Logger log = LogManager.getLogger(this.getClass());
 
     @Override
-    public void save(GameMode gameMode) {
-        if (isGameModeExist(gameMode.getName())){
-            log.error(String.format("The LobbyType [%s] already exists", gameMode.getName()));
+    public void save(LobbyType lobbyType) {
+        if (isLobbyTypeExist(lobbyType.getName())){
+            log.error(String.format("The LobbyType [%s] already exists", lobbyType.getName()));
         } else {
-            String saveSQL = "INSERT INTO gameModes VALUES(? , ?)";
+            String saveSQL = "INSERT INTO lobbyTypes VALUES(? , ?)";
             try (Connection connection = ConnectionFactory.getConnection();
                  PreparedStatement statement = connection.prepareStatement(saveSQL)){
-                statement.setInt(1, gameMode.getId());
-                statement.setString(2, gameMode.getName());
+                statement.setInt(1, lobbyType.getId());
+                statement.setString(2, lobbyType.getName());
                 statement.execute();
-                log.info(String.format("The entity has been saved [id: %d, name: %s]", gameMode.getId(), gameMode.getName()));
+                log.info(String.format("The entity has been saved [id: %d, name: %s]", lobbyType.getId(), lobbyType.getName()));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-                log.error(String.format("Error during entity saving [name: %s]", gameMode.getName()));
+                log.error(String.format("Error during entity saving [name: %s]", lobbyType.getName()));
             } catch (SQLException e) {
                 e.printStackTrace();
-                log.error(String.format("Error during entity saving [name: %s]", gameMode.getName()));
+                log.error(String.format("Error during entity saving [name: %s]", lobbyType.getName()));
             }
         }
     }
 
     @Override
-    public GameMode read(String name) {
-        int gameModeId;
-        String gameModeName;
-        String sql = "SELECT * FROM gameModes WHERE name = '" + name + "' LIMIT 1";
+    public LobbyType read(String name) {
+        int lobbyTypeId;
+        String lobbyTypeName;
+        String sql = "SELECT * FROM lobbyTypes WHERE name = '" + name + "' LIMIT 1";
         try (Connection connection = ConnectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)){
             if (resultSet.next()){
-                gameModeId = resultSet.getInt("id");
-                gameModeName = resultSet.getString("name");
-                return new GameMode(gameModeId, gameModeName);
+                lobbyTypeId = resultSet.getInt("id");
+                lobbyTypeName = resultSet.getString("name");
+                return new LobbyType(lobbyTypeId, lobbyTypeName);
             }else {
-                log.error(String.format("The gameMode [%s] has not found", name));
+                log.error(String.format("The lobbyType [%s] has not found", name));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -58,19 +58,19 @@ public class GameModeDAOImpl implements GameModeDAO{
     }
 
     @Override
-    public GameMode read(Integer id) {
-        int gameModeId;
-        String gameModeName;
-        String sql = "SELECT * FROM gameModes WHERE id = " + id + " LIMIT 1";
+    public LobbyType read(Integer id) {
+        int lobbyTypeId;
+        String lobbyTypeName;
+        String sql = "SELECT * FROM lobbyTypes WHERE id = " + id + " LIMIT 1";
         try (Connection connection = ConnectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)){
             if (resultSet.next()){
-                gameModeId = resultSet.getInt("id");
-                gameModeName = resultSet.getString("name");
-                return new GameMode(gameModeId, gameModeName);
+                lobbyTypeId = resultSet.getInt("id");
+                lobbyTypeName = resultSet.getString("name");
+                return new LobbyType(lobbyTypeId, lobbyTypeName);
             }else {
-                log.error(String.format("The gameMode [%d] has not found", id));
+                log.error(String.format("The lobbyType [id: %d] has not found", id));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -80,8 +80,8 @@ public class GameModeDAOImpl implements GameModeDAO{
         return null;
     }
 
-    private boolean isGameModeExist(String gameModeName){
-        String sql = "SELECT * FROM gameModes WHERE name = '" + gameModeName + "' LIMIT 1;";
+    private boolean isLobbyTypeExist(String lobbyTypeName){
+        String sql = "SELECT * FROM lobbyTypes WHERE name = '" + lobbyTypeName + "' LIMIT 1;";
         try (Connection connection = ConnectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)){
@@ -95,5 +95,4 @@ public class GameModeDAOImpl implements GameModeDAO{
         }
         return false;
     }
-
 }

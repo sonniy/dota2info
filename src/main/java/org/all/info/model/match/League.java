@@ -20,6 +20,12 @@ public class League {
     public League() {
     }
 
+    public League(String name, String description, String tournament_url) {
+        this.name = name;
+        this.description = description;
+        this.tournament_url = tournament_url;
+    }
+
     public League(Long id, String name, String description, String tournament_url) {
         this.id = id;
         this.name = name;
@@ -65,5 +71,15 @@ public class League {
 
     public void setMatches(Set<Match> matches) {
         this.matches = matches;
+    }
+
+    @Override
+    public String toString() {
+        return "League{" +
+                "tournament_url='" + tournament_url + '\'' +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
