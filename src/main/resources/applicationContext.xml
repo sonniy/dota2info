@@ -7,78 +7,117 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!-- !!!!!!!!!!!!! JDBC !!!!!!!!!!!!! -->
 
-    <!-- JDBC data source -->
-    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <beans:property name="driverClassName" value="${db.driver}"/>
-        <beans:property name="url" value="${db.url}"/>
-        <beans:property name="username" value="${db.user}"/>
-        <beans:property name="password" value="${db.pass}"/>
-    </beans:bean>
+     <!--Beans -->
 
-    <!-- SessionFactory -->
-    <beans:bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <beans:property name="dataSource" ref="dataSource"/>
-        <beans:property name="annotatedClasses">
-            <beans:list>
-                <beans:value>org.all.info.model.match.MatchID</beans:value>
-                <beans:value>org.all.info.model.match.Match</beans:value>
-                <beans:value>org.all.info.model.match.LobbyType</beans:value>
-                <beans:value>org.all.info.model.match.GameMode</beans:value>
-                <beans:value>org.all.info.model.match.League</beans:value>
-                <beans:value>org.all.info.model.player.Hero</beans:value>
-                <beans:value>org.all.info.model.player.Item</beans:value>
-            </beans:list>
-        </beans:property>
-        <beans:property name="hibernateProperties">
-            <beans:props>
-                <beans:prop key="dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
-                <beans:prop key="hbm2ddl.auto">update</beans:prop>
-                <beans:prop key="current_session_context_class">thread</beans:prop>
-            </beans:props>
-        </beans:property>
-    </beans:bean>
-
-    <!-- Transactions -->
     <context:component-scan base-package="org.all.info.service"/>
 
-    <tx:annotation-driven transaction-manager="transactionalMeneger"/>
-
-    <beans:bean id="transactionalMeneger" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <beans:property name="sessionFactory" ref="sessionFactory"/>
-    </beans:bean>
-
-    <!-- Beans -->
-
         <!-- match -->
-    <beans:bean id="matchDAO" class="org.all.info.dao.hibernate.MatchDAOImpl"/>
+    <beans:bean id="matchDAO" class="org.all.info.dao.jdbc.MatchDAOImpl"/>
 
     <beans:bean id="matchService" class="org.all.info.service.match.MatchServiceImpl"/>
 
-    <beans:bean id="matchIDDAO" class="org.all.info.dao.hibernate.MatchIDDAOImpl"/>
+    <beans:bean id="matchIDDAO" class="org.all.info.dao.jdbc.MatchIDDAOImpl"/>
 
     <beans:bean id="matchIDService" class="org.all.info.service.match.MatchIDServiceImpl"/>
 
-    <beans:bean id="leagueDAO" class="org.all.info.dao.hibernate.LeagueDAOImpl"/>
+    <beans:bean id="leagueDAO" class="org.all.info.dao.jdbc.LeagueDAOImpl"/>
 
     <beans:bean id="leagueService" class="org.all.info.service.match.LeagueServiceImpl"/>
 
-    <beans:bean id="gameModeDAO" class="org.all.info.dao.hibernate.GameModeDAOImpl"/>
+    <beans:bean id="gameModeDAO" class="org.all.info.dao.jdbc.GameModeDAOImpl"/>
 
     <beans:bean id="gameModeService" class="org.all.info.service.match.GameModeServiceImpl"/>
 
-    <beans:bean id="lobbyTypeDAO" class="org.all.info.dao.hibernate.LobbyTypeDAOImpl"/>
+    <beans:bean id="lobbyTypeDAO" class="org.all.info.dao.jdbc.LobbyTypeDAOImpl"/>
 
     <beans:bean id="lobbyTypeService" class="org.all.info.service.match.LobbyTypeServiceImpl"/>
 
         <!-- player -->
-    <beans:bean id="heroDAO" class="org.all.info.dao.hibernate.HeroDAOImpl"/>
+    <beans:bean id="heroDAO" class="org.all.info.dao.jdbc.HeroDAOImpl"/>
 
     <beans:bean id="heroService" class="org.all.info.service.player.HeroServiceImpl"/>
 
-    <beans:bean id="itemDAO" class="org.all.info.dao.hibernate.ItemDAOImpl"/>
+    <beans:bean id="itemDAO" class="org.all.info.dao.jdbc.ItemDAOImpl"/>
 
     <beans:bean id="itemService" class="org.all.info.service.player.ItemServiceImpl"/>
+
+
+     <!-- !!!!!!!!!!!!!!!!! HIBERNATE !!!!!!!!!!!!!!!!!!!! -->
+
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
+
+    <!--&lt;!&ndash; JDBC data source &ndash;&gt;-->
+    <!--<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<beans:property name="driverClassName" value="${db.driver}"/>-->
+        <!--<beans:property name="url" value="${db.url}"/>-->
+        <!--<beans:property name="username" value="${db.user}"/>-->
+        <!--<beans:property name="password" value="${db.pass}"/>-->
+    <!--</beans:bean>-->
+
+    <!--&lt;!&ndash; SessionFactory &ndash;&gt;-->
+    <!--<beans:bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+        <!--<beans:property name="dataSource" ref="dataSource"/>-->
+        <!--<beans:property name="annotatedClasses">-->
+            <!--<beans:list>-->
+                <!--<beans:value>org.all.info.model.match.MatchID</beans:value>-->
+                <!--<beans:value>org.all.info.model.match.Match</beans:value>-->
+                <!--<beans:value>org.all.info.model.match.LobbyType</beans:value>-->
+                <!--<beans:value>org.all.info.model.match.GameMode</beans:value>-->
+                <!--<beans:value>org.all.info.model.match.League</beans:value>-->
+                <!--<beans:value>org.all.info.model.player.Hero</beans:value>-->
+                <!--<beans:value>org.all.info.model.player.Item</beans:value>-->
+            <!--</beans:list>-->
+        <!--</beans:property>-->
+        <!--<beans:property name="hibernateProperties">-->
+            <!--<beans:props>-->
+                <!--<beans:prop key="dialect">org.hibernate.dialect.MySQLDialect</beans:prop>-->
+                <!--<beans:prop key="hbm2ddl.auto">update</beans:prop>-->
+                <!--<beans:prop key="current_session_context_class">thread</beans:prop>-->
+            <!--</beans:props>-->
+        <!--</beans:property>-->
+    <!--</beans:bean>-->
+
+    <!--&lt;!&ndash; Transactions &ndash;&gt;-->
+    <!--<context:component-scan base-package="org.all.info.service"/>-->
+
+    <!--<tx:annotation-driven transaction-manager="transactionalMeneger"/>-->
+
+    <!--<beans:bean id="transactionalMeneger" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
+        <!--<beans:property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</beans:bean>-->
+
+    <!--&lt;!&ndash; Beans &ndash;&gt;-->
+
+    <!--&lt;!&ndash; match &ndash;&gt;-->
+    <!--<beans:bean id="matchDAO" class="org.all.info.dao.hibernate.MatchDAOImpl"/>-->
+
+    <!--<beans:bean id="matchService" class="org.all.info.service.match.MatchServiceImpl"/>-->
+
+    <!--<beans:bean id="matchIDDAO" class="org.all.info.dao.hibernate.MatchIDDAOImpl"/>-->
+
+    <!--<beans:bean id="matchIDService" class="org.all.info.service.match.MatchIDServiceImpl"/>-->
+
+    <!--<beans:bean id="leagueDAO" class="org.all.info.dao.hibernate.LeagueDAOImpl"/>-->
+
+    <!--<beans:bean id="leagueService" class="org.all.info.service.match.LeagueServiceImpl"/>-->
+
+    <!--<beans:bean id="gameModeDAO" class="org.all.info.dao.hibernate.GameModeDAOImpl"/>-->
+
+    <!--<beans:bean id="gameModeService" class="org.all.info.service.match.GameModeServiceImpl"/>-->
+
+    <!--<beans:bean id="lobbyTypeDAO" class="org.all.info.dao.hibernate.LobbyTypeDAOImpl"/>-->
+
+    <!--<beans:bean id="lobbyTypeService" class="org.all.info.service.match.LobbyTypeServiceImpl"/>-->
+
+    <!--&lt;!&ndash; player &ndash;&gt;-->
+    <!--<beans:bean id="heroDAO" class="org.all.info.dao.hibernate.HeroDAOImpl"/>-->
+
+    <!--<beans:bean id="heroService" class="org.all.info.service.player.HeroServiceImpl"/>-->
+
+    <!--<beans:bean id="itemDAO" class="org.all.info.dao.hibernate.ItemDAOImpl"/>-->
+
+    <!--<beans:bean id="itemService" class="org.all.info.service.player.ItemServiceImpl"/>-->
 
 </beans:beans>

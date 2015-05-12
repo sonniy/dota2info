@@ -2,6 +2,8 @@ package org.all.info.dao.hibernate;
 
 import org.all.info.dao.HeroDAO;
 import org.all.info.model.player.Hero;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -13,6 +15,7 @@ public class HeroDAOImpl implements HeroDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
+    private final Logger log = LogManager.getLogger(this.getClass());
 
     public HeroDAOImpl() {
     }
@@ -21,6 +24,7 @@ public class HeroDAOImpl implements HeroDAO {
     public void save(Hero hero) {
         Session session = sessionFactory.getCurrentSession();
         session.save(hero);
+        log.info(String.format("The hero [id: %d, name: %s] has been saved.", hero.getId(), hero.getName()));
     }
 
     @Override

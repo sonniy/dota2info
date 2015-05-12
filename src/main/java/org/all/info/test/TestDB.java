@@ -1,14 +1,12 @@
 package org.all.info.test;
 
-import org.all.info.dao.MatchDAO;
-import org.all.info.dao.jdbc.MatchDAOImpl;
+import org.all.info.parser.player.ItemParser;
 
 public class TestDB {
 
     public static void main(String[] args) {
 
-        MatchDAO m = new MatchDAOImpl();
+        new ItemParser().run();
 
-        System.out.println(m.read(496));
     }
 }

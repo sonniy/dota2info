@@ -3,18 +3,14 @@ package org.all.info.dao.jdbc;
 import org.all.info.dao.GameModeDAO;
 import org.all.info.model.match.GameMode;
 import org.all.info.util.ConnectionFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 
-public class GameModeDAOImpl implements GameModeDAO{
-
-    private final Logger log = LogManager.getLogger(this.getClass());
+public class GameModeDAOImpl extends  GeneralDAO implements GameModeDAO{
 
     @Override
     public void save(GameMode gameMode) {
-        if (isGameModeExist(gameMode.getName())){
+        if (isExist(gameMode.getName(), "gameModes")){
             log.error(String.format("The LobbyType [%s] already exists", gameMode.getName()));
         } else {
             String saveSQL = "INSERT INTO gameModes VALUES(? , ?)";
@@ -79,21 +75,4 @@ public class GameModeDAOImpl implements GameModeDAO{
         }
         return null;
     }
-
-    private boolean isGameModeExist(String gameModeName){
-        String sql = "SELECT * FROM gameModes WHERE name = '" + gameModeName + "' LIMIT 1;";
-        try (Connection connection = ConnectionFactory.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)){
-            if (resultSet.next()){
-                return true;
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
 }

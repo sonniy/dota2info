@@ -2,7 +2,6 @@ package org.all.info.model.player;
 
 
 import javax.persistence.*;
-import java.util.Map;
 
 public class PlayerSlot {
 
@@ -11,7 +10,6 @@ public class PlayerSlot {
     private Long id;
     private Long account_id;
     private Integer player_slot;
-    private String player_slot_color;
     private Long match_id;
     @ManyToOne()
     @JoinColumn(name = "hero_id")
@@ -30,18 +28,21 @@ public class PlayerSlot {
     private Integer tower_damage;
     private Integer hero_healing;
     private Integer level;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "items")
-    private Map<String, Item> items;
+    private Item item_0;
+    private Item item_1;
+    private Item item_2;
+    private Item item_3;
+    private Item item_4;
+    private Item item_5;
 
-    public PlayerSlot(Long account_id, Integer player_slot, String player_slot_color, Long match_id,
-                      Hero hero, Integer kills, Integer deaths, Integer assists, String leaver_status,
-                      Integer gold, Integer last_hits, Integer denies, Integer xp_per_min, Integer gold_per_min,
-                      Integer gold_spent, Integer hero_damage, Integer tower_damage, Integer hero_healing,
-                      Integer level, Map<String, Item> items) {
+    public PlayerSlot(Long id, Long account_id, Integer player_slot, Long match_id,
+                      Hero hero, Integer kills, Integer deaths, Integer assists, String leaver_status, Integer gold,
+                      Integer last_hits, Integer denies, Integer xp_per_min, Integer gold_per_min, Integer gold_spent,
+                      Integer hero_damage, Integer tower_damage, Integer hero_healing, Integer level,
+                      Item item_0, Item item_1, Item item_2, Item item_3, Item item_4, Item item_5) {
+        this.id = id;
         this.account_id = account_id;
         this.player_slot = player_slot;
-        this.player_slot_color = player_slot_color;
         this.match_id = match_id;
         this.hero = hero;
         this.kills = kills;
@@ -58,7 +59,12 @@ public class PlayerSlot {
         this.tower_damage = tower_damage;
         this.hero_healing = hero_healing;
         this.level = level;
-        this.items = items;
+        this.item_0 = item_0;
+        this.item_1 = item_1;
+        this.item_2 = item_2;
+        this.item_3 = item_3;
+        this.item_4 = item_4;
+        this.item_5 = item_5;
     }
 
     public Long getId() {
@@ -83,14 +89,6 @@ public class PlayerSlot {
 
     public void setPlayer_slot(Integer player_slot) {
         this.player_slot = player_slot;
-    }
-
-    public String getPlayer_slot_color() {
-        return player_slot_color;
-    }
-
-    public void setPlayer_slot_color(String player_slot_color) {
-        this.player_slot_color = player_slot_color;
     }
 
     public Long getMatch_id() {
@@ -221,11 +219,51 @@ public class PlayerSlot {
         this.level = level;
     }
 
-    public Map<String, Item> getItems() {
-        return items;
+    public Item getItem_0() {
+        return item_0;
     }
 
-    public void setItems(Map<String, Item> items) {
-        this.items = items;
+    public void setItem_0(Item item_0) {
+        this.item_0 = item_0;
+    }
+
+    public Item getItem_1() {
+        return item_1;
+    }
+
+    public void setItem_1(Item item_1) {
+        this.item_1 = item_1;
+    }
+
+    public Item getItem_2() {
+        return item_2;
+    }
+
+    public void setItem_2(Item item_2) {
+        this.item_2 = item_2;
+    }
+
+    public Item getItem_3() {
+        return item_3;
+    }
+
+    public void setItem_3(Item item_3) {
+        this.item_3 = item_3;
+    }
+
+    public Item getItem_4() {
+        return item_4;
+    }
+
+    public void setItem_4(Item item_4) {
+        this.item_4 = item_4;
+    }
+
+    public Item getItem_5() {
+        return item_5;
+    }
+
+    public void setItem_5(Item item_5) {
+        this.item_5 = item_5;
     }
 }

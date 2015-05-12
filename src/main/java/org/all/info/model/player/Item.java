@@ -1,29 +1,35 @@
 package org.all.info.model.player;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "items")
 public class Item {
     @Id
     @Column(name = "id")
-    private Long id;
+    private Integer id;
     private String name;
     private String img;
-    @OneToMany(mappedBy = "item_0", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<PlayerSlot> playerSlots;
+
+    public Item(Integer id, String name, String img) {
+        this.id = id;
+        this.name = name;
+        this.img = img;
+    }
 
     public Item(String name, String img) {
         this.name = name;
         this.img = img;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

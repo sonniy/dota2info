@@ -1,7 +1,9 @@
 package org.all.info.model.player;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "heroes")
@@ -9,15 +11,17 @@ public class Hero {
 
     @Id
     @Column(name = "id")
-    private Long id;
+    private Integer id;
     private String name;
     private String localized_name;
+    @Column(name = "small_img")
     private String smallImg;
+    @Column(name = "large_img")
     private String largeImg;
+    @Column(name = "full_vertical_img")
     private String fullVerticalImg;
+    @Column(name = "full_horizontal_img")
     private String fullHorizontalImg;
-    @OneToMany(mappedBy = "hero", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<PlayerSlot> playerSlots;
 
     public Hero(String name, String localized_name, String smallImg, String largeImg, String fullVerticalImg, String fullHorizontalImg) {
         this.name = name;
@@ -28,11 +32,21 @@ public class Hero {
         this.fullHorizontalImg = fullHorizontalImg;
     }
 
-    public Long getId() {
+    public Hero(Integer id, String name, String localized_name, String smallImg, String largeImg, String fullVerticalImg, String fullHorizontalImg) {
+        this.id = id;
+        this.name = name;
+        this.localized_name = localized_name;
+        this.smallImg = smallImg;
+        this.largeImg = largeImg;
+        this.fullVerticalImg = fullVerticalImg;
+        this.fullHorizontalImg = fullHorizontalImg;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -82,5 +96,18 @@ public class Hero {
 
     public void setFullHorizontalImg(String fullHorizontalImg) {
         this.fullHorizontalImg = fullHorizontalImg;
+    }
+
+    @Override
+    public String toString() {
+        return "Hero{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", localized_name='" + localized_name + '\'' +
+                ", smallImg='" + smallImg + '\'' +
+                ", largeImg='" + largeImg + '\'' +
+                ", fullVerticalImg='" + fullVerticalImg + '\'' +
+                ", fullHorizontalImg='" + fullHorizontalImg + '\'' +
+                '}';
     }
 }

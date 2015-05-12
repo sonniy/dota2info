@@ -60,3 +60,9 @@ CREATE TABLE heroes(
   full_vertical_img VARCHAR(128),
   full_horizontal_img VARCHAR(128)
 );
+
+CREATE TABLE items(
+  id INT PRIMARY KEY,
+  name VARCHAR(128),
+  img VARCHAR(256)
+);

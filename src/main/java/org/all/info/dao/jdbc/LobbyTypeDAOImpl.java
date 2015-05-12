@@ -3,18 +3,14 @@ package org.all.info.dao.jdbc;
 import org.all.info.dao.LobbyTypeDAO;
 import org.all.info.model.match.LobbyType;
 import org.all.info.util.ConnectionFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 
-public class LobbyTypeDAOImpl implements LobbyTypeDAO {
-
-    private final Logger log = LogManager.getLogger(this.getClass());
+public class LobbyTypeDAOImpl extends GeneralDAO implements LobbyTypeDAO {
 
     @Override
     public void save(LobbyType lobbyType) {
-        if (isLobbyTypeExist(lobbyType.getName())){
+        if (isExist(lobbyType.getName(), "lobbyTypes")){
             log.error(String.format("The LobbyType [%s] already exists", lobbyType.getName()));
         } else {
             String saveSQL = "INSERT INTO lobbyTypes VALUES(? , ?)";
@@ -78,21 +74,5 @@ public class LobbyTypeDAOImpl implements LobbyTypeDAO {
             e.printStackTrace();
         }
         return null;
-    }
-
-    private boolean isLobbyTypeExist(String lobbyTypeName){
-        String sql = "SELECT * FROM lobbyTypes WHERE name = '" + lobbyTypeName + "' LIMIT 1;";
-        try (Connection connection = ConnectionFactory.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)){
-            if (resultSet.next()){
-                return true;
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 }
