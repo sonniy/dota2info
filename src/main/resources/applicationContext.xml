@@ -12,7 +12,6 @@
      <!--Beans -->
 
     <context:component-scan base-package="org.all.info.service"/>
-
         <!-- match -->
     <beans:bean id="matchDAO" class="org.all.info.dao.jdbc.MatchDAOImpl"/>
 
@@ -42,6 +41,10 @@
     <beans:bean id="itemDAO" class="org.all.info.dao.jdbc.ItemDAOImpl"/>
 
     <beans:bean id="itemService" class="org.all.info.service.player.ItemServiceImpl"/>
+
+    <beans:bean id="playerSlotDAO" class="org.all.info.dao.jdbc.PlayerSlotDAOImpl"/>
+
+    <beans:bean id="playerSlotService" class="org.all.info.service.player.PlayerSlotServiceImpl"/>
 
 
      <!-- !!!!!!!!!!!!!!!!! HIBERNATE !!!!!!!!!!!!!!!!!!!! -->

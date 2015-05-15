@@ -17,7 +17,7 @@ public class PlayerSlot {
     private Integer kills;
     private Integer deaths;
     private Integer assists;
-    private String leaver_status;
+    private Integer leaver_status;
     private Integer gold;
     private Integer last_hits;
     private Integer denies;
@@ -36,7 +36,7 @@ public class PlayerSlot {
     private Item item_5;
 
     public PlayerSlot(Long id, Long account_id, Integer player_slot, Long match_id,
-                      Hero hero, Integer kills, Integer deaths, Integer assists, String leaver_status, Integer gold,
+                      Hero hero, Integer kills, Integer deaths, Integer assists, Integer leaver_status, Integer gold,
                       Integer last_hits, Integer denies, Integer xp_per_min, Integer gold_per_min, Integer gold_spent,
                       Integer hero_damage, Integer tower_damage, Integer hero_healing, Integer level,
                       Item item_0, Item item_1, Item item_2, Item item_3, Item item_4, Item item_5) {
@@ -131,11 +131,11 @@ public class PlayerSlot {
         this.assists = assists;
     }
 
-    public String getLeaver_status() {
+    public Integer getLeaver_status() {
         return leaver_status;
     }
 
-    public void setLeaver_status(String leaver_status) {
+    public void setLeaver_status(Integer leaver_status) {
         this.leaver_status = leaver_status;
     }
 
@@ -265,5 +265,36 @@ public class PlayerSlot {
 
     public void setItem_5(Item item_5) {
         this.item_5 = item_5;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerSlot{" +
+                "id=" + id +
+                ", account_id=" + account_id +
+                ", player_slot=" + player_slot +
+                ", match_id=" + match_id +
+                ", hero=" + hero +
+                ", kills=" + kills +
+                ", deaths=" + deaths +
+                ", assists=" + assists +
+                ", leaver_status=" + leaver_status +
+                ", gold=" + gold +
+                ", last_hits=" + last_hits +
+                ", denies=" + denies +
+                ", xp_per_min=" + xp_per_min +
+                ", gold_per_min=" + gold_per_min +
+                ", gold_spent=" + gold_spent +
+                ", hero_damage=" + hero_damage +
+                ", tower_damage=" + tower_damage +
+                ", hero_healing=" + hero_healing +
+                ", level=" + level +
+                ", item_0=" + item_0 +
+                ", item_1=" + item_1 +
+                ", item_2=" + item_2 +
+                ", item_3=" + item_3 +
+                ", item_4=" + item_4 +
+                ", item_5=" + item_5 +
+                '}';
     }
 }

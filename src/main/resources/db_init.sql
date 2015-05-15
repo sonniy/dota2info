@@ -66,3 +66,31 @@ CREATE TABLE items(
   name VARCHAR(128),
   img VARCHAR(256)
 );
+
+CREATE TABLE playerSlots (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  account_id BIGINT,
+  player_slot INT,
+  match_id BIGINT,
+  hero INT,
+  kills INT,
+  deaths INT,
+  assists INT,
+  leaver_status INT,
+  gold INT,
+  last_hits INT,
+  denies INT,
+  xp_per_min INT,
+  gold_per_min INT,
+  gold_spent INT,
+  hero_damage INT,
+  tower_damage INT,
+  hero_healing INT,
+  level INT,
+  item_0 INT,
+  item_1 INT,
+  item_2 INT,
+  item_3 INT,
+  item_4 INT,
+  item_5 INT
+);

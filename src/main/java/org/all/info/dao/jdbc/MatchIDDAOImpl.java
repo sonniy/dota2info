@@ -100,7 +100,7 @@ public class MatchIDDAOImpl implements MatchIDDAO{
     * */
     @Override
     public Long readLastMatchID() {
-        String readSQL = "SELECT match_id FROM matchID ORDER BY match_id DESC LIMIT 1";
+        String readSQL = "SELECT match_id FROM matchID WHERE isParsed = 0 ORDER BY match_id ASC LIMIT 1";
         try(Connection connection = ConnectionFactory.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(readSQL)) {

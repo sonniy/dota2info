@@ -3,6 +3,7 @@ package org.all.info.parser.player;
 
 import org.all.info.model.player.Hero;
 import org.all.info.service.player.HeroService;
+import org.all.info.util.GeneralUtils;
 import org.all.info.util.HTTPClientUtil;
 import org.all.info.util.SpringUtil;
 import org.apache.logging.log4j.LogManager;
@@ -32,11 +33,9 @@ public class HeroParser implements Runnable{
         JSONObject result = (JSONObject) root.get("result");
         JSONArray heroes = (JSONArray) result.get("heroes");
 
-        long start = System.currentTimeMillis();
-
         for (int i = 0; i < heroes.size(); i++) {
             JSONObject JSONHero = (JSONObject) heroes.get(i);
-            String id = String.valueOf((Long) JSONHero.get("id"));
+            Integer id = GeneralUtils.convertLongToInt(JSONHero.get("id"));
             String name = (String) JSONHero.get("name");
             String localized_name = (String) JSONHero.get("localized_name");
             String smallImg = IMG_TEMP + name.substring(14) + "_sb.png";
@@ -44,12 +43,12 @@ public class HeroParser implements Runnable{
             String fullHorizontalImg = IMG_TEMP + name.substring(14) + "_full.png";
             String fullVerticalImg = IMG_TEMP + name.substring(14) + "_vert.jpg";
 
-            Hero hero = new Hero(Integer.valueOf(id), name, localized_name, smallImg, largeImg, fullVerticalImg, fullHorizontalImg);
+            Hero hero = new Hero(id, name, localized_name, smallImg, largeImg, fullVerticalImg, fullHorizontalImg);
             heroService.save(hero);
         }
 
-        long finish = System.currentTimeMillis();
-        long time = finish - start;
-        System.out.println(time + " ms");
+        /* Steam API can response an ID with 0 value which does not exist at GetHeroes method*/
+        Hero hero = new Hero(0, "noname", "noname", "noname", "noname", "noname", "noname");
+        heroService.save(hero);
     }
 }
